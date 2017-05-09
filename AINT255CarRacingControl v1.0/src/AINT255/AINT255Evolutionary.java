@@ -102,7 +102,7 @@ public class AINT255Evolutionary {
 
             System.out.println("Starting generation " + i);
 
-            selectIndividuals(population);
+            selectIndividualsRWS(population);
 
             crossoverIndividuals();
 
@@ -120,7 +120,7 @@ public class AINT255Evolutionary {
 
     // =============================================
     // methods to be completed / modified
-    private int selectIndividuals(ArrayList<AINT255MLPController> individuals) {
+    private int selectIndividualsRWS(ArrayList<AINT255MLPController> individuals) {
 
         // empty method as placeholder for a selection method 
         int total = 0;
