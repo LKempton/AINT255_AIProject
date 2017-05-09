@@ -52,6 +52,12 @@ public class AINT255MLP {
     public AINT255MLP(AINT255MLP mlp) {
         inputToHiddenWeights = copy(mlp.inputToHiddenWeights);
         hiddenToOutputWeights = copy(mlp.hiddenToOutputWeights);
+        
+        inputNodes = new double[mlp.getNumberInputNodes()];
+        hiddenNodes = new double[mlp.getNumberHiddenNodes()];
+        outputNodes = new double[mlp.getNumberOuputNodes()];
+        
+        random = mlp.random;
 
         mutationMagnitude = mlp.mutationMagnitude;
 
