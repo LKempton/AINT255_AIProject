@@ -102,7 +102,7 @@ public class AINT255Evolutionary {
 
             System.out.println("Starting generation " + i);
 
-            selectIndividuals();
+            selectIndividuals(population);
 
             crossoverIndividuals();
 
@@ -120,9 +120,43 @@ public class AINT255Evolutionary {
 
     // =============================================
     // methods to be completed / modified
-    private void selectIndividuals() {
+    private int selectIndividuals(ArrayList<AINT255MLPController> individuals) {
 
         // empty method as placeholder for a selection method 
+        int total = 0;
+        int index = 0;
+        
+        double spinValue = getSpinValue(individuals);
+ 
+        while (total < spinValue)
+        {
+            total += individuals.get(index).getFitness();
+            index++;
+        }
+        
+        if (index > 0)
+        {
+            index--;
+        }
+        
+        return index;
+        
+    }
+    
+    private double getSpinValue(ArrayList<AINT255MLPController> individuals)
+    {
+        Random rand = new Random();
+        double spinValue = 0;
+        double sumFitness = 0;
+        
+        for (int i = 0; i < individuals.size(); i++)
+        {
+            sumFitness += individuals.get(i).getFitness();
+        }
+        
+        spinValue = rand.nextInt() * sumFitness;
+        
+        return spinValue;
     }
 
     private void crossoverIndividuals() {
