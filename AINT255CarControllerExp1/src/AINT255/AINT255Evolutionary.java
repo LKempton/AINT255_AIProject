@@ -61,7 +61,7 @@ public class AINT255Evolutionary {
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 1;
+        numInputs = 2;
 
         // this can be experimentally varied 
         numhiddenNodes = 5;
@@ -123,13 +123,14 @@ public class AINT255Evolutionary {
     private int selectIndividualsRWS(ArrayList<AINT255MLPController> individuals) {
 
         // empty method as placeholder for a selection method 
-        int total = 0;
+        double total = 0;
         int index = 0;
         
         double spinValue = getSpinValue(individuals);
- 
+        
         while (total < spinValue)
         {
+           // System.out.println(index);
             total += individuals.get(index).getFitness();
             index++;
         }
@@ -139,8 +140,7 @@ public class AINT255Evolutionary {
             index--;
         }
         
-        return index;
-        
+        return index; 
     }
     
     private double getSpinValue(ArrayList<AINT255MLPController> individuals)
@@ -154,7 +154,7 @@ public class AINT255Evolutionary {
             sumFitness += individuals.get(i).getFitness();
         }
         
-        spinValue = rand.nextInt() * sumFitness;
+        spinValue = rand.nextDouble() * sumFitness;
         
         return spinValue;
     }

@@ -28,8 +28,9 @@ public class AINT255MLPController implements Controller, Evolvable {
      *
      * @param controller : the object to copy
      */
-    private AINT255MLPController(AINT255MLPController controller) {
+    public AINT255MLPController(AINT255MLPController controller) {
         mlp = new AINT255MLP(controller.mlp);
+        fitness = controller.fitness;
     }
 
     private AINT255MLPController(AINT255MLP mlp) {
@@ -78,6 +79,7 @@ public class AINT255MLPController implements Controller, Evolvable {
 
         // first input is the bias do not chnage this
         sensors[0] = 1.0;
+        sensors[1] = model.getSpeed();
 
    
         // add more inputs
