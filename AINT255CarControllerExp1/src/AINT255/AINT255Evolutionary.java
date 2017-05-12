@@ -51,7 +51,7 @@ public class AINT255Evolutionary {
 
         AINT255MLPController newIndividual;
 
-        populationSize = 100;
+        populationSize = 30;
 
         mutationMagnitude = 0.1;
 
@@ -61,7 +61,7 @@ public class AINT255Evolutionary {
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 2;
+        numInputs = 4;
 
         // this can be experimentally varied 
         numhiddenNodes = 5;
@@ -83,7 +83,7 @@ public class AINT255Evolutionary {
 
         // number of seperate times an agent is placed in simulator
         // fitness of the agent is the average score obtained 
-        numberGenerations = 10;
+        numberGenerations = 500;
         evaluationRepetitions = 5;
 
         //----------------------------------------------------------

@@ -27,7 +27,7 @@ public class AINT255Play {
         Controller secondController; // second controller is the blue car;
 
         // either load in the evolved controller
-      //  firstController = Play.load(AINT255EvolvedController);
+       firstController = Play.load(AINT255EvolvedController);
 
         // or choose one of the options below
         // options for controllers are: 
@@ -41,7 +41,7 @@ public class AINT255Play {
         
        // firstController = new  HeuristicAggressiveController();
          
-         firstController = new  HeuristicSensibleController();
+         //firstController = new  HeuristicSensibleController();
                
         secondController = new GreedyController();
 

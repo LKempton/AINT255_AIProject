@@ -80,6 +80,8 @@ public class AINT255MLPController implements Controller, Evolvable {
         // first input is the bias do not chnage this
         sensors[0] = 1.0;
         sensors[1] = model.getSpeed();
+        sensors[2] = model.getDistanceToNextWaypoint();
+        sensors[3] = model.getAngleToNextWaypoint();
 
    
         // add more inputs
