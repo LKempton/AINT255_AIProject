@@ -71,8 +71,39 @@ public class AINT255MLP {
      *
      * @param parent2
      */
-    public void crossOver(AINT255MLP parent2) {
-
+    public AINT255MLP crossOver(AINT255MLP parent2) {
+     
+        int ihCutPointI = getRand(1, inputToHiddenWeights.length);
+        int ihCutPointJ = getRand(1, inputToHiddenWeights[0].length);
+        
+        int hoCutPointI = getRand(1, hiddenToOutputWeights.length);
+        int hoCutPointJ = getRand(1, hiddenToOutputWeights[0].length);
+        
+        for (int i = 0; i < ihCutPointI; i++)
+        {
+            for (int j = 0; j < ihCutPointJ; j++)
+            {
+                this.inputToHiddenWeights[i][j] = parent2.inputToHiddenWeights[i][j];
+            }
+        }
+        
+        for (int i = 0; i < hoCutPointI; i++)
+        {
+            for (int j = 0; j < hoCutPointJ; j++)
+            {
+                this.hiddenToOutputWeights[i][j] = parent2.hiddenToOutputWeights[i][j];
+            }
+        }
+        
+        return this;
+    }
+    
+    private int getRand(int min, int max)
+    {
+        Random rand = new Random();
+        int result = rand.nextInt(max - min + 1) + min;
+        
+        return result;
     }
 
     /**

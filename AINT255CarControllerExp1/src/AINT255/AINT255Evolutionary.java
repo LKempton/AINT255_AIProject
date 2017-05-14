@@ -51,7 +51,7 @@ public class AINT255Evolutionary {
 
         AINT255MLPController newIndividual;
 
-        populationSize = 30;
+        populationSize = 100;
 
         mutationMagnitude = 0.1;
 
@@ -83,7 +83,7 @@ public class AINT255Evolutionary {
 
         // number of seperate times an agent is placed in simulator
         // fitness of the agent is the average score obtained 
-        numberGenerations = 500;
+        numberGenerations = 100;
         evaluationRepetitions = 5;
 
         //----------------------------------------------------------
@@ -104,7 +104,8 @@ public class AINT255Evolutionary {
 
             selectIndividualsRWS(population);
 
-            crossoverIndividuals();
+            //
+            //crossoverIndividuals(population);
 
             mutatePopulation();
 
@@ -121,8 +122,6 @@ public class AINT255Evolutionary {
     // =============================================
     // methods to be completed / modified
     private int selectIndividualsRWS(ArrayList<AINT255MLPController> individuals) {
-
-        // empty method as placeholder for a selection method 
         double total = 0;
         int index = 0;
         
@@ -159,10 +158,24 @@ public class AINT255Evolutionary {
         return spinValue;
     }
 
-    private void crossoverIndividuals() {
+    private void crossoverIndividuals(ArrayList<AINT255MLP> individuals) {
+        
+        Random rand = new Random();
 
-        // empty method as placeholder for 
-        // a crossover (aka recombination) 
+        for (int i = 0; i < individuals.size(); i += 2)
+        {
+            if (rand.nextDouble() < crossOverProbability)
+            {  
+                
+                AINT255MLP c1 = individuals.get(i).crossOver(individuals.get(i + 1));
+                AINT255MLP c2 = individuals.get(i + 1).crossOver(individuals.get(i));
+            }
+            else
+            {
+                AINT255MLP c1 = individuals.get(i);
+                AINT255MLP c2 = individuals.get(i + 1);
+            }
+        }
     }
 
     private void mutatePopulation() {
