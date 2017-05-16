@@ -27,6 +27,7 @@ public class AINT255Evolutionary {
 
     // private AINT255MLPController[] populationOLD;
     private ArrayList<AINT255MLPController> population;
+    private ArrayList<AINT255MLPController> tempPopulation;
 
     //   private double[] fitness;
     private Controller opponentController;
@@ -58,10 +59,11 @@ public class AINT255Evolutionary {
         crossOverProbability = 0.7;
 
         population = new ArrayList<>();
+        tempPopulation = new ArrayList<>();
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 6;
+        numInputs = 4;
 
         // this can be experimentally varied 
         numhiddenNodes = 5;
@@ -101,12 +103,11 @@ public class AINT255Evolutionary {
         for (int i = 1; i <= numberGenerations; i++) {
 
             System.out.println("Starting generation " + i);
-
-            int selectedIndividual1 = selectIndividualsRWS(population);
-            int selectedIndividual2 = selectIndividualsRWS(population);
-            //
-            crossoverIndividuals(selectedIndividual1, selectedIndividual2);
-
+            
+            selectIndividuals();
+            
+            crossoverIndividuals();
+           
             mutatePopulation();
 
             evaluatePopulation();
@@ -117,6 +118,27 @@ public class AINT255Evolutionary {
             statsCollector.saveBestIndividualSoFar(population);
         }
         System.out.println(" Evolution Finished ");
+    }
+    
+    private void selectIndividuals(){
+        
+        AINT255MLPController tempController;
+        
+        tempPopulation.clear();
+        
+        for (int i = 0; i < population.size(); i++)
+        {
+            int bestIndex = selectIndividualsRWS(population);
+            tempController = new AINT255MLPController(population.get(bestIndex));
+            tempPopulation.add(tempController);
+        }
+        
+        population.clear();
+        
+        for (int i = 0; i < tempPopulation.size(); i++)
+        {
+            population.add(tempPopulation.get(i));
+        }
     }
 
     // =============================================
@@ -129,7 +151,6 @@ public class AINT255Evolutionary {
         
         while (total < spinValue)
         {
-           // System.out.println(index);
             total += individuals.get(index).getFitness();
             index++;
         }
@@ -158,33 +179,26 @@ public class AINT255Evolutionary {
         return spinValue;
     }
 
-    private void crossoverIndividuals(int selectedIndividual1, int selectedIndividual2) {
+    private void crossoverIndividuals() {
         
         Random rand = new Random();
-
-        if (rand.nextDouble() < crossOverProbability)
-        {  
-            AINT255MLPController c1 = new AINT255MLPController(population.get(selectedIndividual1));
-            AINT255MLPController c2 = new AINT255MLPController(population.get(selectedIndividual2));
-            AINT255MLPController temp = c1;
-            c1.mlp = c1.crossOver(c2.mlp);
-            c2.mlp = c2.crossOver(temp.mlp);
-
-            //CreateChildren(c1,c2);
-        }
-        else
+        
+        for (int i = 0; i < population.size(); i += 2)
         {
-            AINT255MLPController c1 = new AINT255MLPController(population.get(selectedIndividual1));
-            AINT255MLPController c2 = new AINT255MLPController(population.get(selectedIndividual2));
-
-            //CreateChildren(c1,c2);
+            if (rand.nextDouble() < crossOverProbability)
+            {
+            //AINT255MLPController c1 = population.get(i);
+            //AINT255MLPController c2 = population.get(i + 1);
+            //AINT255MLPController temp = c1;
+            
+            //c1.mlp = c1.crossOver(c2.mlp);
+            //c2.mlp = c2.crossOver(temp.mlp);
+            
+            population.get(i).crossOver(population.get(i + 1).mlp);
+            
+            population.get(i + 1).crossOver(population.get(i).mlp);
+            }
         }
-    }
-    
-    private void CreateChildren(AINT255MLPController c1, AINT255MLPController c2)
-    {
-            population.add(c1);
-            population.add(c2);
     }
 
     private void mutatePopulation() {

@@ -82,8 +82,8 @@ public class AINT255MLPController implements Controller, Evolvable {
         sensors[1] = model.getSpeed();
         sensors[2] = model.getDistanceToNextWaypoint();
         sensors[3] = model.getAngleToNextWaypoint();
-        sensors[4] = model.getDistanceToOtherVehicle();
-        sensors[5] = model.getAngleToOtherVehicle();
+        //sensors[4] = model.getDistanceToOtherVehicle();
+        //sensors[5] = model.getAngleToOtherVehicle();
 
    
         // add more inputs

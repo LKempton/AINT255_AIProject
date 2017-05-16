@@ -119,9 +119,9 @@ public class AINT255MLP {
         for (int i = 0; i < array.length; i++)
         {
             rngProbability = rand.nextDouble();
-            if (rngProbability < mutationMagnitude)
+            if (rngProbability < (1 / array.length))
             {
-                array[i] = array[i] * noise.nextGaussian();
+                array[i] += array[i] * noise.nextGaussian() * mutationMagnitude;
             }
         }
 
