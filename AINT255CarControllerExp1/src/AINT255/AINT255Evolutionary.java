@@ -61,7 +61,7 @@ public class AINT255Evolutionary {
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 4;
+        numInputs = 6;
 
         // this can be experimentally varied 
         numhiddenNodes = 5;
@@ -102,10 +102,10 @@ public class AINT255Evolutionary {
 
             System.out.println("Starting generation " + i);
 
-            selectIndividualsRWS(population);
+            int selectedIndividual = selectIndividualsRWS(population);
 
             //
-            //crossoverIndividuals(population);
+            crossoverIndividuals(selectedIndividual);
 
             mutatePopulation();
 
@@ -158,22 +158,24 @@ public class AINT255Evolutionary {
         return spinValue;
     }
 
-    private void crossoverIndividuals(ArrayList<AINT255MLP> individuals) {
+    private void crossoverIndividuals(int selectedIndividual) {
         
         Random rand = new Random();
 
-        for (int i = 0; i < individuals.size(); i += 2)
+        for (int i = selectedIndividual; i < population.size(); i += 2)
         {
             if (rand.nextDouble() < crossOverProbability)
             {  
-                
-                AINT255MLP c1 = individuals.get(i).crossOver(individuals.get(i + 1));
-                AINT255MLP c2 = individuals.get(i + 1).crossOver(individuals.get(i));
+                AINT255MLPController c1 = population.get(selectedIndividual);
+                AINT255MLPController c2 = population.get(selectedIndividual + 1);
+                AINT255MLPController temp = c1;
+                c1.mlp = c1.crossOver(c2.mlp);
+                c2.mlp = c2.crossOver(temp.mlp);
             }
             else
             {
-                AINT255MLP c1 = individuals.get(i);
-                AINT255MLP c2 = individuals.get(i + 1);
+                AINT255MLPController c1 = population.get(selectedIndividual);
+                AINT255MLPController c2 = population.get(selectedIndividual + 1);
             }
         }
     }
@@ -182,10 +184,10 @@ public class AINT255Evolutionary {
 
         for (AINT255MLPController individual : population) {
             // mutate the individual using individual's mutationMagnitude
-            individual.mutate();
+            //individual.mutate();
 
             // optionally set a mutation magnitude
-            //  individual.mutate(mutationMagnitude);
+            individual.mutate(mutationMagnitude);
         }
 
     }

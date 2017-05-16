@@ -6,7 +6,7 @@ import simplerace.Evolvable;
 
 public class AINT255MLPController implements Controller, Evolvable {
 
-    private AINT255MLP mlp;
+    public AINT255MLP mlp;
 
     private double fitness;
 
@@ -82,6 +82,8 @@ public class AINT255MLPController implements Controller, Evolvable {
         sensors[1] = model.getSpeed();
         sensors[2] = model.getDistanceToNextWaypoint();
         sensors[3] = model.getAngleToNextWaypoint();
+        sensors[4] = model.getDistanceToOtherVehicle();
+        sensors[5] = model.getAngleToOtherVehicle();
 
    
         // add more inputs
@@ -106,8 +108,8 @@ public class AINT255MLPController implements Controller, Evolvable {
         mlp.setActivationFunctionType(type);
     }
 
-    public void crossOver(AINT255MLP parent2) {
-        mlp.crossOver(parent2);
+    public AINT255MLP crossOver(AINT255MLP parent2) {
+        return mlp.crossOver(parent2);
     }
 
     @Override

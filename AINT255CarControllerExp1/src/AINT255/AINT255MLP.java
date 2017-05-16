@@ -111,6 +111,19 @@ public class AINT255MLP {
      * @param array 
      */
     protected void mutate(double[] array) {
+        
+        Random rand = new Random();
+        Random noise = new Random();
+        double rngProbability;
+        
+        for (int i = 0; i < array.length; i++)
+        {
+            rngProbability = rand.nextDouble();
+            if (rngProbability < mutationMagnitude)
+            {
+                array[i] = array[i] * noise.nextGaussian();
+            }
+        }
 
     }
 
