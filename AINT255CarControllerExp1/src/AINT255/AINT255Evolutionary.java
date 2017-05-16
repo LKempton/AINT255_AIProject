@@ -102,10 +102,10 @@ public class AINT255Evolutionary {
 
             System.out.println("Starting generation " + i);
 
-            int selectedIndividual = selectIndividualsRWS(population);
-
+            int selectedIndividual1 = selectIndividualsRWS(population);
+            int selectedIndividual2 = selectIndividualsRWS(population);
             //
-            crossoverIndividuals(selectedIndividual);
+            crossoverIndividuals(selectedIndividual1, selectedIndividual2);
 
             mutatePopulation();
 
@@ -158,26 +158,33 @@ public class AINT255Evolutionary {
         return spinValue;
     }
 
-    private void crossoverIndividuals(int selectedIndividual) {
+    private void crossoverIndividuals(int selectedIndividual1, int selectedIndividual2) {
         
         Random rand = new Random();
 
-        for (int i = selectedIndividual; i < population.size(); i += 2)
-        {
-            if (rand.nextDouble() < crossOverProbability)
-            {  
-                AINT255MLPController c1 = population.get(selectedIndividual);
-                AINT255MLPController c2 = population.get(selectedIndividual + 1);
-                AINT255MLPController temp = c1;
-                c1.mlp = c1.crossOver(c2.mlp);
-                c2.mlp = c2.crossOver(temp.mlp);
-            }
-            else
-            {
-                AINT255MLPController c1 = population.get(selectedIndividual);
-                AINT255MLPController c2 = population.get(selectedIndividual + 1);
-            }
+        if (rand.nextDouble() < crossOverProbability)
+        {  
+            AINT255MLPController c1 = new AINT255MLPController(population.get(selectedIndividual1));
+            AINT255MLPController c2 = new AINT255MLPController(population.get(selectedIndividual2));
+            AINT255MLPController temp = c1;
+            c1.mlp = c1.crossOver(c2.mlp);
+            c2.mlp = c2.crossOver(temp.mlp);
+
+            //CreateChildren(c1,c2);
         }
+        else
+        {
+            AINT255MLPController c1 = new AINT255MLPController(population.get(selectedIndividual1));
+            AINT255MLPController c2 = new AINT255MLPController(population.get(selectedIndividual2));
+
+            //CreateChildren(c1,c2);
+        }
+    }
+    
+    private void CreateChildren(AINT255MLPController c1, AINT255MLPController c2)
+    {
+            population.add(c1);
+            population.add(c2);
     }
 
     private void mutatePopulation() {
