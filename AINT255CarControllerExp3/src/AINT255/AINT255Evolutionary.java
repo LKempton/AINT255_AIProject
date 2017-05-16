@@ -63,10 +63,10 @@ public class AINT255Evolutionary {
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 4;
+        numInputs = 7;
 
         // this can be experimentally varied 
-        numhiddenNodes = 5;
+        numhiddenNodes = 10;
 
         for (int i = 0; i < populationSize; i++) {
 

@@ -77,13 +77,16 @@ public class AINT255MLPController implements Controller, Evolvable {
 
         double sensors[] = new double[mlp.getNumberInputNodes()];
 
+        // This experiment involves changing inputs and hidden nodes.
         // first input is the bias do not chnage this
         sensors[0] = 1.0;
-        sensors[1] = model.getSpeed();
-        sensors[2] = model.getDistanceToNextWaypoint();
-        sensors[3] = model.getAngleToNextWaypoint();
-        //sensors[4] = model.getDistanceToOtherVehicle();
-        //sensors[5] = model.getAngleToOtherVehicle();
+      //sensors[1] = model.getSpeed();
+        sensors[1] = model.getDistanceToNextWaypoint();
+        sensors[2] = model.getAngleToNextWaypoint();
+        sensors[3] = model.getDistanceToNextNextWaypoint();
+        sensors[4] = model.getAngleToNextNextWaypoint();
+        sensors[5] = model.getDistanceToOtherVehicle();
+        sensors[6] = model.getAngleToOtherVehicle();
 
    
         // add more inputs
