@@ -35,7 +35,7 @@ public class AINT255CompareControllers {
         //          HeuristicUnderdogController()
         
        // this is the blue car
-        Controller secondController = new HeuristicCombinedController();
+        Controller secondController = new HeuristicSensibleController();
         
         if (secondController != null) {
             StatisticalSummary[] results = duoStats (firstController, secondController);

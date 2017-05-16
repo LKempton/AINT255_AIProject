@@ -81,7 +81,7 @@ public class AINT255Evolutionary {
         }
     }
 
-    public void runEvolution() {
+    public void runEvolution() { 
 
         // number of seperate times an agent is placed in simulator
         // fitness of the agent is the average score obtained 
@@ -96,7 +96,7 @@ public class AINT255Evolutionary {
         //          new HeuristicCombinedController()
         //          new HeuristicAggressiveController()
         //          new GreedyController()
-        opponentController = new HeuristicAggressiveController();
+        opponentController = new HeuristicSensibleController();
 
         evaluatePopulation();
 
