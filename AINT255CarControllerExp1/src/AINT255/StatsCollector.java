@@ -44,7 +44,7 @@ public class StatsCollector {
 
         // need to add / ammend code here to accuratly find the best indvidual so far
         // (so far the first individual is taken as the best.. this is not likely to be the case)
-        int bestIndex = 0;
+        int bestIndex = FindBestIndex(population);
 
         if (bestFitness < population.get(bestIndex).getFitness()) {
     
@@ -58,6 +58,22 @@ public class StatsCollector {
                System.out.printf("Fitness of best individual %.4f\n", bestFitness);
             }
         }
+    
+    private int FindBestIndex(ArrayList<AINT255MLPController> population)
+    {
+        int best = -1;
+        double bestFitness = 0;
+        
+        for (int i = 0; i < population.size(); i++)
+        {
+            if (bestFitness > population.get(i).getFitness())
+            {
+                best = i;
+            }
+        }
+        
+        return best;
+    }
     
     
     public void writeStats() {
