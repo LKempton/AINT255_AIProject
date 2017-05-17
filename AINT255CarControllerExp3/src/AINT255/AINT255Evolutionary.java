@@ -54,7 +54,7 @@ public class AINT255Evolutionary {
 
         populationSize = 100;
 
-        mutationMagnitude = 0.8;
+        mutationMagnitude = 0.1;
 
         crossOverProbability = 0.7;
 
@@ -63,10 +63,10 @@ public class AINT255Evolutionary {
 
         // number of inputs depends on the measures used
         // but always add one for the bias
-        numInputs = 4;
+        numInputs = 8;
 
         // this can be experimentally varied 
-        numhiddenNodes = 5;
+        numhiddenNodes = 8;
 
         for (int i = 0; i < populationSize; i++) {
 

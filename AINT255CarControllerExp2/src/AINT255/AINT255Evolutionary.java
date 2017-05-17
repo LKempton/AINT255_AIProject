@@ -54,7 +54,7 @@ public class AINT255Evolutionary {
 
         populationSize = 100;
 
-        mutationMagnitude = 0.8;
+        mutationMagnitude = 0.1;
 
         crossOverProbability = 0.7;
 

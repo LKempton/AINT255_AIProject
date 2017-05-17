@@ -54,7 +54,7 @@ public class AINT255Evolutionary {
 
         populationSize = 100;
 
-        mutationMagnitude = 0.8;
+        mutationMagnitude = 0.3;
 
         crossOverProbability = 0.7;
 
@@ -85,7 +85,7 @@ public class AINT255Evolutionary {
 
         // number of seperate times an agent is placed in simulator
         // fitness of the agent is the average score obtained 
-        numberGenerations = 100;
+        numberGenerations = 200;
         evaluationRepetitions = 5;
 
         //----------------------------------------------------------
